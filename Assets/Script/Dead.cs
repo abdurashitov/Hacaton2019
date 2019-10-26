@@ -21,15 +21,15 @@ public class Dead : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Health == 0)
-        {
-            cr = sr.color;
-            for (int i = 255;  i>= 0; i++)
-            {  
-                cr.a--;
-                sr.color = cr;
-            }
-        }
+        //if (Health == 0)
+        //{
+        //    cr = sr.color;
+        //    for (int i = 255;  i>= 0; i++)
+        //    {  
+        //        cr.a--;
+        //        sr.color = cr;
+        //    }
+        //}
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
