@@ -11,7 +11,7 @@ public class Dead : MonoBehaviour
     public int Health=3;
     public Text cointHelth;
     private Color cr;
-    public float time = 0f;
+    private float time = 0f;
     public Behaviour move;
     // Start is called before the first frame update
     void Start()

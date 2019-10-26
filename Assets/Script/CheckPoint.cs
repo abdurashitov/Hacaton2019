@@ -8,7 +8,10 @@ public class CheckPoint : MonoBehaviour
     public KeyCode rewindButton;
     bool isRewind;
     List<Vector3> positionList;
+    List<Quaternion> posRotate;
     Rigidbody2D rb;
+    private bool flag=true;
+    public Behaviour fall;
 
 
     public float timeRewind;
@@ -16,7 +19,10 @@ public class CheckPoint : MonoBehaviour
     void Start()
     {
         positionList = new List<Vector3>();
+        posRotate = new List<Quaternion>();
         rb = GetComponent<Rigidbody2D>();
+        if (rb.bodyType == RigidbodyType2D.Static)
+            flag = false;
     }
 
     private void FixedUpdate()
@@ -31,11 +37,16 @@ public class CheckPoint : MonoBehaviour
         {
             if (positionList.Count > 0)
             {
+                if(fall)
+                    fall.enabled = false;
                 int LastPosittion = positionList.Count - 1;
                 transform.position = Vector2.MoveTowards(positionList[LastPosittion], positionList[LastPosittion], 10 * Time.deltaTime);
+                transform.rotation = Quaternion.Lerp(transform.rotation, posRotate[LastPosittion],10*Time.deltaTime);
                 // positionList[LastPosittion];
                 positionList.RemoveAt(LastPosittion);
-                rb.bodyType = RigidbodyType2D.Kinematic;
+                posRotate.RemoveAt(LastPosittion);
+                rb.bodyType = RigidbodyType2D.Static;
+
             }
         }
         else
@@ -44,7 +55,8 @@ public class CheckPoint : MonoBehaviour
                 positionList.RemoveAt(0);
 
             positionList.Add(transform.position);
-            rb.bodyType = RigidbodyType2D.Dynamic;
+            posRotate.Add(transform.rotation);
+            
         }
 
         if (Input.GetKeyDown(rewindButton))
@@ -55,6 +67,15 @@ public class CheckPoint : MonoBehaviour
         if (Input.GetKeyUp(rewindButton))
         {
             isRewind = false;
+            if (flag)
+                rb.bodyType = RigidbodyType2D.Dynamic;
+            else
+            {
+                rb.bodyType = RigidbodyType2D.Static;
+                GlobalSetting.flag = true;
+            }
+            if (fall)
+                fall.enabled = true;
         }
     }
 }
