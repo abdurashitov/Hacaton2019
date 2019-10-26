@@ -22,6 +22,7 @@ public class Move : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         charAnimator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        GlobalSetting.Speed = speed;
 
     }
     private void Start()
@@ -30,6 +31,7 @@ public class Move : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        speed = GlobalSetting.Speed;
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
             isGrounded = false;
@@ -94,9 +96,8 @@ public class Move : MonoBehaviour
         //transform.Rotate(0, 180, 0);
 
 
-        //transform.Rotate(0, 180, 0);
-        //eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y-180, transform.eulerAngles.z);
-        rb.MoveRotation(180*10);
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y-180, transform.eulerAngles.z);
+
 
     }
 
