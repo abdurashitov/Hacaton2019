@@ -33,11 +33,11 @@ public class Dead : MonoBehaviour
             move.enabled = false;
             if (time > 1)
             {
-                Debug.Log("блять");
-                GlobalSetting.Speed = 10;
                 cointHelth.text = "Health :" + 3;
                 move.enabled = true;
                 Health = 3;
+                transform.position = spawn1.transform.position;
+                time = 0f;
             }
         }
     }

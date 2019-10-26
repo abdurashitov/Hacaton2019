@@ -36,19 +36,19 @@ public class Move : MonoBehaviour
         {
             isGrounded = false;
             Jump();
-            //charAnimator.SetInteger("Run", 2);
+            charAnimator.SetInteger("Run", 2);
         }
         if (Input.GetButton("Horizontal"))
         {
             Run();
             if (isGrounded == true)
-                //charAnimator.SetInteger("Run", 1);
+                charAnimator.SetInteger("Run", 1);
                 ;
         }
         else
         {
             if (isGrounded == true)
-                //charAnimator.SetInteger("Run", 0);
+                charAnimator.SetInteger("Run", 0);
                 ;
         }
 
@@ -80,7 +80,7 @@ public class Move : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         isGrounded = true;
-        //charAnimator.SetInteger("Run", 0);
+        charAnimator.SetInteger("Run", 0);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
