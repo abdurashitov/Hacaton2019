@@ -41,8 +41,7 @@ public class CheckPoint : MonoBehaviour
                     fall.enabled = false;
                 int LastPosittion = positionList.Count - 1;
                 transform.position = Vector2.MoveTowards(positionList[LastPosittion], positionList[LastPosittion], 10 * Time.deltaTime);
-                transform.rotation = Quaternion.Lerp(transform.rotation, posRotate[LastPosittion],10*Time.deltaTime);
-                // positionList[LastPosittion];
+                transform.rotation = posRotate[LastPosittion];
                 positionList.RemoveAt(LastPosittion);
                 posRotate.RemoveAt(LastPosittion);
                 rb.bodyType = RigidbodyType2D.Static;

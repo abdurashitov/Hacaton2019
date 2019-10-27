@@ -8,7 +8,9 @@ public class FallPlatworm : MonoBehaviour
     Rigidbody2D rb;
     private float time = 0f;
     public float time1 = 1f;
-    
+    public bool flag2 = true;
+
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -17,11 +19,14 @@ public class FallPlatworm : MonoBehaviour
     {
         //Vector3 move = new Vector3(rb.velocity.x, rb.velocity.y-5, 0f);
         if (collision.gameObject.tag == "Player")
+        {
             GlobalSetting.flag = false;
+            flag2 = false;
+        }
     }
     private void Update()
     {
-        if (!GlobalSetting.flag)
+        if (!flag2)
         {
 ;
             // transform.Translate(0, speedOfPlatform * Time.deltaTime, 0);

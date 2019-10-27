@@ -71,9 +71,7 @@ public class Move : MonoBehaviour
         x = Input.GetAxis("Horizontal");
         Vector3 move = new Vector3(x * speed, rb.velocity.y, 0f);
         rb.velocity = move;
-        //sprite.flipX = move.x < 0.0f;
-        //Vector3 move = Vector3.right * Input.GetAxis("Horizontal");
-        //transform.position = Vector3.MoveTowards(transform.position, transform.position + move, speed * Time.deltaTime);
+      
     }
 
 
@@ -89,16 +87,8 @@ public class Move : MonoBehaviour
 
     void TurnTheRat()
     {
-        //смена переменной показывающей направление взгляда на обратное значение
         isLookingLeft = !isLookingLeft;
-        //поворот крысы через инвертацию размера по оси х
-        //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
-        //transform.Rotate(0, 180, 0);
-
-
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y-180, transform.eulerAngles.z);
-
-
     }
 
 }
