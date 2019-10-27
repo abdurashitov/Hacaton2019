@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckPoint : MonoBehaviour
+public class checpointPlatworm : MonoBehaviour
 {
     // Start is called before the first frame update
     public KeyCode rewindButton;
@@ -10,8 +10,8 @@ public class CheckPoint : MonoBehaviour
     List<Vector3> positionList;
     List<Quaternion> posRotate;
     Rigidbody2D rb;
-    private bool flag=true;
-    public Behaviour fall;
+    public Behaviour bh;
+    //private bool flag = true;
 
 
     public float timeRewind;
@@ -21,29 +21,24 @@ public class CheckPoint : MonoBehaviour
         positionList = new List<Vector3>();
         posRotate = new List<Quaternion>();
         rb = GetComponent<Rigidbody2D>();
-        if (rb.bodyType == RigidbodyType2D.Static)
-            flag = false;
+        Debug.Log("1");
+        //if (rb.bodyType == RigidbodyType2D.Static)
+        //    flag = false;
     }
-
-    private void FixedUpdate()
-    {
-       
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (isRewind)
         {
+            bh.enabled = false;
             if (positionList.Count > 0)
             {
-                if(fall)
-                    fall.enabled = false;
+            
                 int LastPosittion = positionList.Count - 1;
                 transform.position = Vector2.MoveTowards(positionList[LastPosittion], positionList[LastPosittion], 10 * Time.deltaTime);
-                //transform.rotation = posRotate[LastPosittion];
+                transform.rotation = posRotate[LastPosittion];
                 positionList.RemoveAt(LastPosittion);
                 posRotate.RemoveAt(LastPosittion);
+                Debug.Log("2");
                 rb.bodyType = RigidbodyType2D.Static;
 
             }
@@ -55,26 +50,23 @@ public class CheckPoint : MonoBehaviour
 
             positionList.Add(transform.position);
             posRotate.Add(transform.rotation);
-            
+
         }
 
         if (Input.GetKeyDown(rewindButton))
         {
+            bh.enabled = false;
             isRewind = true;
-            
+            Debug.Log("3");
+
         }
         if (Input.GetKeyUp(rewindButton))
         {
+            bh.enabled = true;
             isRewind = false;
-            if (flag)
-                rb.bodyType = RigidbodyType2D.Dynamic;
-            else
-            {
-                rb.bodyType = RigidbodyType2D.Static;
-                GlobalSetting.flag = true;
-            }
-            if (fall)
-                fall.enabled = true;
+            GlobalSetting.flag = true;
+            Debug.Log("4");
+            rb.bodyType = RigidbodyType2D.Static;    
         }
     }
 }

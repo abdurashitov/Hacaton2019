@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6170524510947406215}
   - component: {fileID: 6170524510947406218}
   - component: {fileID: 6170524510947406219}
-  - component: {fileID: -6980455230366798525}
+  - component: {fileID: 3682305897234669931}
   m_Layer: 0
   m_Name: bridgeB
   m_TagString: Untagged
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedOfPlatform: 5
   time1: 1
+  flag2: 1
 --- !u!50 &6170524510947406219
 Rigidbody2D:
   serializedVersion: 4
@@ -144,7 +145,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-6980455230366798525
+--- !u!114 &3682305897234669931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,9 +154,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6170524510947406214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d445214f189441540adba18e00cf294f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ae8006ea69df2d42b2feb727391b953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rewindButton: 102
-  fall: {fileID: 6170524510947406218}
+  bh: {fileID: 6170524510947406218}
   timeRewind: 5

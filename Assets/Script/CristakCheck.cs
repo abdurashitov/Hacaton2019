@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CristakCheck : MonoBehaviour
 {
-    public Behaviour cristal;
     public GameObject gm;
     private void Start()
     {
@@ -14,9 +13,8 @@ public class CristakCheck : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            cristal.enabled = false;
             GlobalSetting.cristal1++;
-            
+            gm.SetActive(false);
         }
     }
 

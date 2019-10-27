@@ -11,6 +11,7 @@ public class Move : MonoBehaviour
     public float jumpForce = 1.0F;
     public bool isLookingLeft;
     private float x;
+    private Animation anim;
     public Animator charAnimator;
 
     private SpriteRenderer sprite;
@@ -20,6 +21,7 @@ public class Move : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animation>();
         charAnimator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         GlobalSetting.Speed = speed;
@@ -43,12 +45,14 @@ public class Move : MonoBehaviour
             Run();
             if (isGrounded == true)
                 charAnimator.SetInteger("Run", 1);
+   
                 ;
         }
         else
         {
             if (isGrounded == true)
                 charAnimator.SetInteger("Run", 0);
+ 
                 ;
         }
 
@@ -68,6 +72,7 @@ public class Move : MonoBehaviour
     }
     private void Run()
     {
+        
         x = Input.GetAxis("Horizontal");
         Vector3 move = new Vector3(x * speed, rb.velocity.y, 0f);
         rb.velocity = move;

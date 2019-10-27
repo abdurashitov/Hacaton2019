@@ -15,6 +15,7 @@ public class FallPlatworm : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Vector3 move = new Vector3(rb.velocity.x, rb.velocity.y-5, 0f);
@@ -26,9 +27,8 @@ public class FallPlatworm : MonoBehaviour
     }
     private void Update()
     {
-        if (!flag2)
+        if (!GlobalSetting.flag && !flag2)
         {
-;
             // transform.Translate(0, speedOfPlatform * Time.deltaTime, 0);
             time += Time.deltaTime * 1f;
             Debug.Log("cerf");
